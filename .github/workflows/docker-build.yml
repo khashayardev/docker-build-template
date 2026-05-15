@@ -12,7 +12,7 @@ on:
         description: "📦 Repository Name"
         required: false
         type: string
-        default: "bale-yt-downloader"
+        default: "Your-Image-Name"
       docker_token:
         description: "🔑 Docker Hub Access Token"
         required: true
