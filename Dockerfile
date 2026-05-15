@@ -1,26 +1,16 @@
-# Dockerfile for Lightweight LibreTranslate
-# مناسب برای GitHub Actions با دانلود سریع و حجم کم
-
 FROM libretranslate/libretranslate:latest
 
-# نصب curl برای health check
+# فقط curl نصب کن برای health check
 USER root
 RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 USER libretranslate
 
-# حفظ کننده سلامت
-HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=3 \
-  CMD curl -f http://localhost:5000/health || exit 1
-
-# تنظیمات بهینه برای اجرای سریع‌تر و حجم کمتر
+# تنظیمات از طریق environment variables
 ENV LT_LOAD_ONLY=en,fa
 ENV LT_THREADS=2
 ENV LT_REQ_LIMIT=1000
 ENV LT_DISABLE_WEB_UI=true
-ENV LT_UPDATE_MODELS=false
 
-# پورت پیش‌فرض
 EXPOSE 5000
 
-# دستور صحیح اجرا (بدون lt-preset)
-CMD ["libretranslate"]
+# بدون CMD - بگذار خود تصویر اجرا شود
