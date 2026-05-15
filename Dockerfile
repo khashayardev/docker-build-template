@@ -22,5 +22,5 @@ ENV LT_UPDATE_MODELS=false
 # پورت پیش‌فرض
 EXPOSE 5000
 
-# اجرای سرویس
-CMD ["lt-preset", "run"]
+# دستور صحیح اجرا (بدون lt-preset)
+CMD ["libretranslate"]
